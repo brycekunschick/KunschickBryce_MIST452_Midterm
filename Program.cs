@@ -1,3 +1,6 @@
+using KunschickMidterm452.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace KunschickMidterm452
 {
     public class Program
@@ -8,6 +11,13 @@ namespace KunschickMidterm452
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+
+            //1)
+            var connString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+            //2)
+            builder.Services.AddDbContext<PoliceDbContext>(options => options.UseSqlServer(connString));
 
             var app = builder.Build();
 
